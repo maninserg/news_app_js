@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ============== Compiled and minified CSS =================== -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- ================ My custom CSS ============= -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>NewsApp</title>
+</head>
+
+<body>
+    <!-- ============= NavBar =============== -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">NewsApp</a>
+        </div>
+    </nav>
+    <!-- ============= End NavBar ============= -->
+
+    <!--- ============ Form for Search ============= -->
+    <div class="search-controls">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card">
+                       <form name="newsControls"> 
+                           <div class="card-content">
+                               <span class="card-title">Search News</span>
+                               <div class="input-field">
+                                   <select name="country" id="country">
+                                        <option value="ua">Ukraine</option>
+                                        <option value="us">United States</option>
+                                   </select>
+                                   <label for="">Choice your country</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" id="autocomplete-input" class="autocomplete" name="search">
+                                    <label for="autocomplete-input">Search</label>
+                                </div>
+                                <div class="card-action">
+                                    <button class="btn waves-effect waves-light" type="submit">
+                                        Search
+                                        <i class="material-icons right">search</i>
+                                    </button>
+                                </div>
+                            </div>
+                       </form> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============= End Form for Search ============== -->
+
+    <!-- ============== News Container ============= -->
+    <div class="news-container">
+        <div class="container">
+            <div class="row grid-container"></div>
+        </div>
+    </div>
+    <!-- ============== End News Container ==========-->
+
+    <!-- ============== Compiled and minified JavaScript ================ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
