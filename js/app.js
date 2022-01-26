@@ -101,7 +101,7 @@ function newsTemplate({ urlToImage, title, url, description }) {
 					<p>${description || ''}</p>
 				</div>
 				<div class="card-action">
-					<a href="${url}">
+					<a href="${url}">Read more</a>
 				</div>
 			</div>
 		</div>
