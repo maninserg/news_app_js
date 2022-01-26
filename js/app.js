@@ -66,20 +66,52 @@ const newsService = (function () {
 	}
 })();
 
+// Find Elements
+const form = document.forms['newsControls'];
+const countrySelect = form.elements['country'];
+const searchInput = form.elements['search'];
+
+// Add Listeners
+form.addEventListener('submit', (e) => {
+	e.preventDefault();
+	loadNews();
+})
+
 // Load news function
 function loadNews() {
-	newsService.topHeadlines('ru', onGetResponse);
+	showLoader();
+	const country = countrySelect.value;
+	const searchText = searchInput.value;
+	if (!searchText) {
+		newsService.topHeadlines(country, onGetResponse);
+	} else {
+		newsService.everyThing(searchText, onGetResponse);
+	}
+
 }
 
 // Callback function on get response from server
 function onGetResponse(err, res) {
-	console.log(res);
+	removeLoader();
+	if (err) {
+		showAlert(err, 'error-msg');
+		return;
+	}
+
+	if(!res.articles.length){
+		// show empty message
+		return;
+	}
+
 	renderNews(res.articles);
 }
 
 // Function for render news on page
 function renderNews(news) {
 	const newsContainer = document.querySelector('.news-container .row');
+	if (newsContainer.children.length) {
+		clearContainer(newsContainer);
+	}
 	let fragment = '';
 	news.forEach(newsItem => {
 		const el = newsTemplate(newsItem);
@@ -106,6 +138,39 @@ function newsTemplate({ urlToImage, title, url, description }) {
 			</div>
 		</div>
 	`;
+}
+
+// Function show errors and messages
+function showAlert(msg, type = 'success') {
+	M.toast({ html: msg, classes: type });
+}
+
+// Function for clearing container with news
+function clearContainer (container) {
+	// container.innerHTML = '';
+	let child = container.lastElementChild;
+	while (child) {
+		container.removeChild(child);
+		child = container.lastElementChild;
+	}
+}
+
+// Function show Loader
+function showLoader () {
+	document.body.insertAdjacentHTML('afterbegin',
+									`
+									<div class="progress">
+										<div class="indeterminate"></div>
+									</div>
+									`);
+}
+
+// Function remove Loader
+function removeLoader () {
+	const loader = document.querySelector('.progress');
+	if (loader) {
+		loader.remove();
+	}
 }
 
 
